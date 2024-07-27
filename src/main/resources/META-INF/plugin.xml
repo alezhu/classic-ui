@@ -1,18 +1,15 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
-    <id>com.github.alezhu.classicui</id>
-    <name>classic-ui</name>
-    <vendor>alezhu</vendor>
 
-    <depends>com.intellij.modules.platform</depends>
+    <id>ru.alezhu.idea.classic.ui</id>
+    <name>Alezhu ClassicUI</name>
+    <vendor url="https://github.com/alezhu/classic-ui">Alezhu</vendor>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
-
+    <incompatible-with>com.intellij.cwm.guest</incompatible-with>
+    <incompatible-with>com.intellij.jetbrains.client</incompatible-with>
+    <incompatible-with>com.intellij.gateway</incompatible-with>
+    <depends>com.intellij.modules.lang</depends>
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.alezhu.classicui.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <iconMapperSuppressor/>
     </extensions>
-
-    <applicationListeners>
-        <listener class="com.github.alezhu.classicui.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
-    </applicationListeners>
 </idea-plugin>
