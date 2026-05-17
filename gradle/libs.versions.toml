@@ -1,20 +1,15 @@
 [versions]
 # libraries
-exampleLibrary = "24.1.0"
 
 # plugins
-kotlin = "1.9.24"
 changelog = "2.5.0"
-gradleIntelliJPlugin = "1.17.4"
-qodana = "2024.1.5"
-kover = "0.9.8"
+intelliJPlatform = "2.16.0"
+libVersionsUpdater = "0.54.0"
 
 [libraries]
-exampleLibrary = { group = "com.example", name = "exampleLibrary", version.ref = "exampleLibrary" }
 
 [plugins]
 changelog = { id = "org.jetbrains.changelog", version.ref = "changelog" }
-gradleIntelliJPlugin = { id = "org.jetbrains.intellij", version.ref = "gradleIntelliJPlugin" }
-kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-kover = { id = "org.jetbrains.kotlinx.kover", version.ref = "kover" }
-qodana = { id = "org.jetbrains.qodana", version.ref = "qodana" }
+intelliJPlatform = { id = "org.jetbrains.intellij.platform", version.ref = "intelliJPlatform" }
+libVersionsUpdater = { id = "com.github.ben-manes.versions", version.ref = "libVersionsUpdater" }
+
