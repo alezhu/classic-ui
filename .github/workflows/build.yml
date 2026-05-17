@@ -73,7 +73,7 @@ jobs:
           cd ${{ github.workspace }}/build/distributions
           FILENAME=`ls *.zip`
 
-          echo "filename=${FILENAME}" >> $GITHUB_OUTPUT
+          echo "filename=${FILENAME:0:-4}" >> $GITHUB_OUTPUT
 
       # Store already-built plugin as an artifact for downloading
       - name: Upload artifact
@@ -106,12 +106,14 @@ jobs:
             --jq '.[] | select(.draft == true) | .id' \
             | xargs -I '{}' gh api -X DELETE repos/{owner}/{repo}/releases/{}
 
-      # Download build artifact already-built plugin as an artifact for downloading
-      - name: Upload artifact
+      # Download build artifact
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: ${{ steps.artifact.outputs.filename }}
           path: ./build/distributions/
+          merge-multiple: true
+
 
       # Create a new release draft which is not publicly visible and requires manual acceptance
       - name: Create Release Draft
