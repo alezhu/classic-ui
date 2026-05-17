@@ -5,10 +5,10 @@
     <name>Alezhu ClassicUI</name>
     <vendor url="https://github.com/alezhu/classic-ui">Alezhu</vendor>
 
-    <incompatible-with>com.intellij.cwm.guest</incompatible-with>
     <incompatible-with>com.intellij.jetbrains.client</incompatible-with>
-    <incompatible-with>com.intellij.gateway</incompatible-with>
-    <depends>com.intellij.modules.lang</depends>
+    <dependencies>
+        <module name="intellij.platform.monolith" />
+    </dependencies>
     <extensions defaultExtensionNs="com.intellij">
         <iconMapperSuppressor/>
     </extensions>
