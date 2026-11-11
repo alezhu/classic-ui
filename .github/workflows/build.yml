@@ -128,4 +128,23 @@ jobs:
           EOM
           )" \
           ./build/distributions/*
-          
+
+      # Sync to central IntelliJ plugins repository
+      - name: Sync to Central Repository
+        env:
+          CENTRAL_REPO_PAT: ${{ secrets.CENTRAL_REPO_PAT }}
+        run: |
+          if [ -z "$CENTRAL_REPO_PAT" ]; then
+            echo "CENTRAL_REPO_PAT secret is not configured. Skipping sync to central repository."
+            exit 0
+          fi
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git clone https://x-access-token:${CENTRAL_REPO_PAT}@github.com/alezhu/intellij-plugins-repo.git central-repo
+          mkdir -p central-repo/plugins
+          rm -f central-repo/plugins/alezhu-idea-classic-ui-*.zip
+          cp ./build/distributions/*.zip central-repo/plugins/
+          cd central-repo
+          git add plugins/
+          git commit -m "Update ClassicUI to ${{ needs.build.outputs.version }}" || exit 0
+          git push origin main
